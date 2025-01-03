@@ -1,0 +1,48 @@
+name: vending_machine
+description: "PopGas - Maquina 24h"
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_svg: ^2.0.11
+  cupertino_icons: ^1.0.8
+  get_it: ^7.2.0
+  get: ^4.6.6
+  google_fonts: ^6.2.1
+  qr_flutter: ^4.0.0
+  jiffy: ^6.3.1
+  percent_indicator: ^4.2.4
+  audioplayers: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  injectable_generator: ^1.5.4
+  build_runner: ^2.4.13
+  json_serializable: ^6.5.1
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/welcome/
+    - assets/order_placed/
+    - assets/product_selection/
+    - assets/product_selection/
+    - assets/card_payment/
+    - assets/pix_payment/
+    - assets/place_container_instructions/
+    - assets/security_verification/
+    - assets/flow_selection/
+    - assets/payment_selection/
