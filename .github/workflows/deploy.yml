@@ -1,0 +1,45 @@
+name: "Build & Release"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build & Release
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set Up Java
+        uses: actions/setup-java@v3.12.0
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+
+      - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.4'
+          channel: 'stable'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build linux --release
+
+      - name: Compress Archives and IPAs
+        run: |
+          cd build
+          tar -czf linux.tar.gz linux
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Releases
+          path: |
+            build/linux.tar.gz
