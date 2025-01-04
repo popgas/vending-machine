@@ -28,28 +28,33 @@ jobs:
           distribution: 'oracle'
           java-version: '17'
 
-      - name: Set Up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.24.4'
-          channel: 'stable'
-
-      - name: Patch for linux build
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y ninja-build libunwind-dev libgtk-3-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
-
-      - name: Install Dependencies
-        run: flutter pub get
-
       - name: Build APK
         run: |
           docker run --rm --platform linux/arm64 -v ${{ github.workspace }}:/workspace -w /workspace \
           ubuntu:22.04 /bin/bash -c "
           apt-get update -y &&
-          apt-get install -y ninja-build libgtk-3-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev &&
-          flutter pub get &&
-          flutter build linux --release --target-platform=linux-arm64
+          apt-get install -y ninja-build \ 
+              libgtk-3-dev \
+              libgstreamer1.0-dev \ 
+              libgstreamer-plugins-base1.0-dev \
+              curl \
+              git \
+              unzip \
+              xz-utils \
+              zip \
+              libglu1-mesa \
+              clang \
+              cmake \
+              git \
+              pkg-config \
+              libgtk-3-dev \
+              liblzma-dev \
+              libstdc++-12-dev \
+          && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.27.1-stable.tar.xz
+          && tar -xf ./flutter_linux_3.27.1-stable.tar.xz -C ~/development/
+          && export PATH="~/development/flutter/bin:$PATH"
+          && flutter pub get
+          && flutter build linux --release --target-platform=linux-arm64
           "
 
       - name: Compress Archives
