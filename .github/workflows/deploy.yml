@@ -35,7 +35,7 @@ jobs:
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build linux --release
+        run: flutter build linux --release --target-platform=linux-arm64
 
       - name: Compress Archives
         run: |
