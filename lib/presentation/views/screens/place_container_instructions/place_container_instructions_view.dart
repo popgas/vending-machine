@@ -1,4 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
@@ -14,16 +14,16 @@ class PlaceContainerInstructionsView extends StatefulWidget {
 }
 
 class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructionsView> {
-  final player = AudioPlayer();
+  // final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    playAudio();
+    // playAudio();
   }
 
   void playAudio() async {
-    await player.play(AssetSource('place_container_instructions/audio.mp3'));
+    // await player.play(AssetSource('place_container_instructions/audio.mp3'));
   }
 
   @override
@@ -67,7 +67,7 @@ class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructi
           const SizedBox(height: 24),
           BlueButton(
             onPressed: () {
-              player.stop();
+              // player.stop();
               Get.to(() => const SecurityVerificationView());
             },
             child: const Row(

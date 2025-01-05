@@ -1,8 +1,7 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
-import 'package:vending_machine/presentation/views/components/buttons/blue_button.dart';
 import 'package:vending_machine/presentation/views/components/buttons/white_button.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
 import 'package:vending_machine/presentation/views/screens/place_container_instructions/place_container_instructions_view.dart';
@@ -15,7 +14,7 @@ class ProductSelectionView extends StatefulWidget {
 }
 
 class _ProductSelectionViewState extends State<ProductSelectionView> {
-  final player = AudioPlayer();
+  // final player = AudioPlayer();
 
   @override
   void initState() {
@@ -24,7 +23,7 @@ class _ProductSelectionViewState extends State<ProductSelectionView> {
   }
 
   void playAudio() async {
-    await player.play(AssetSource('product_selection/audio.mp3'));
+    // await player.play(AssetSource('product_selection/audio.mp3'));
   }
 
   @override
@@ -47,7 +46,7 @@ class _ProductSelectionViewState extends State<ProductSelectionView> {
           ),
           WhiteButton(
             onPressed: () {
-              player.stop();
+              // player.stop();
               Get.to(() => const PlaceContainerInstructionsView());
             },
             child: Row(
@@ -77,7 +76,7 @@ class _ProductSelectionViewState extends State<ProductSelectionView> {
           const SizedBox(height: 24),
           WhiteButton(
             onPressed: () {
-              player.stop();
+              // player.stop();
             },
             child: Row(
               children: [

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
@@ -18,7 +18,7 @@ class _SecurityVerificationViewState extends State<SecurityVerificationView> {
   @override
   void initState() {
     super.initState();
-    playAudio();
+    // playAudio();
 
     Future.delayed(const Duration(seconds: 5), () {
       Get.to(() => const PaymentSelectionView());
@@ -26,8 +26,8 @@ class _SecurityVerificationViewState extends State<SecurityVerificationView> {
   }
 
   void playAudio() async {
-    final player = AudioPlayer();
-    await player.play(AssetSource('security_verification/audio.mp3'));
+    // final player = AudioPlayer();
+    // await player.play(AssetSource('security_verification/audio.mp3'));
   }
 
   @override

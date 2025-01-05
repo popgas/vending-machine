@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
@@ -17,12 +17,12 @@ class PixPaymentView extends StatefulWidget {
 
 class _PixPaymentViewState extends State<PixPaymentView> {
   int timeRemaining = 600;
-  final player = AudioPlayer();
+  // final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    playAudio();
+    // playAudio();
 
     Timer.periodic(const Duration(seconds: 1), (t) {
       setState(() {
@@ -32,7 +32,7 @@ class _PixPaymentViewState extends State<PixPaymentView> {
   }
 
   void playAudio() async {
-    await player.play(AssetSource('pix_payment/audio.mp3'));
+    // await player.play(AssetSource('pix_payment/audio.mp3'));
   }
 
   @override

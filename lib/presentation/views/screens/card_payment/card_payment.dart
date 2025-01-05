@@ -1,4 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
@@ -13,12 +13,12 @@ class CardPaymentView extends StatefulWidget {
 }
 
 class _CardPaymentViewState extends State<CardPaymentView> {
-  final player = AudioPlayer();
+  // final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    playAudio();
+    // playAudio();
 
     Future.delayed(const Duration(seconds: 5), () {
       Get.to(() => const OrderCompletedView());
@@ -26,7 +26,7 @@ class _CardPaymentViewState extends State<CardPaymentView> {
   }
 
   void playAudio() async {
-    await player.play(AssetSource('card_payment/audio.mp3'));
+    // await player.play(AssetSource('card_payment/audio.mp3'));
   }
 
   @override

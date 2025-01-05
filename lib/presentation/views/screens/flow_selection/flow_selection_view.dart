@@ -1,4 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
@@ -15,16 +15,16 @@ class FlowSelectionView extends StatefulWidget {
 }
 
 class _FlowSelectionViewState extends State<FlowSelectionView> {
-  final player = AudioPlayer();
+  // final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    playAudio();
+    // playAudio();
   }
 
   void playAudio() async {
-    await player.play(AssetSource('flow_selection/audio.mp3'));
+    // await player.play(AssetSource('flow_selection/audio.mp3'));
   }
 
   @override
@@ -47,7 +47,7 @@ class _FlowSelectionViewState extends State<FlowSelectionView> {
           ),
           BlueButton(
             onPressed: () {
-              player.stop();
+              // player.stop();
               Get.to(() => const ProductSelectionView());
             },
             child: const Text(
@@ -58,7 +58,7 @@ class _FlowSelectionViewState extends State<FlowSelectionView> {
           const SizedBox(height: 24),
           WhiteButton(
             onPressed: () {
-              player.stop();
+              // player.stop();
             },
             child: Column(
               children: [
