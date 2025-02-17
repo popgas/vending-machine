@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/buttons/blue_button.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
-import 'package:vending_machine/presentation/views/screens/card_payment/card_payment.dart';
-import 'package:vending_machine/presentation/views/screens/pix_payment/pix_payment_view.dart';
+import 'package:vending_machine/presentation/views/screens/payment_selection/payment_selection_service.dart';
 
 class PaymentSelectionView extends StatefulWidget {
   const PaymentSelectionView({super.key});
@@ -16,10 +15,12 @@ class PaymentSelectionView extends StatefulWidget {
 
 class _PaymentSelectionViewState extends State<PaymentSelectionView> {
   // final player = AudioPlayer();
+  final service = PaymentSelectionService();
 
   @override
   void initState() {
     super.initState();
+    service.init();
     // playAudio();
   }
 
@@ -36,28 +37,29 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
         child: Column(
           children: [
             Expanded(
-              child: Center(
-                child: Text(
-                  "Selecione a forma de pagamento",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: ColorPalette.blue3,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Center(
+                  child: Text(
+                    "Selecione a forma de pagamento",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: ColorPalette.blue3,
+                    ),
                   ),
                 ),
               ),
             ),
             BlueButton(
-              onPressed: () {
-                // player.stop();
-                Get.to(() => const CardPaymentView());
-              },
+              onPressed: service.debitCardSelected,
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 12.0, top: 12, bottom: 12),
+                    padding: const EdgeInsets.only(right: 18.0, top: 12, bottom: 12, left: 6),
                     child: SizedBox(
-                      width: 20,
+                      width: 25,
                       child: Image.asset("assets/payment_selection/cartao.png"),
                     ),
                   ),
@@ -65,7 +67,7 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
                     "Cartão de Débito",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 23,
                       letterSpacing: 1,
                     ),
                   ),
@@ -74,16 +76,13 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
             ),
             const SizedBox(height: 24),
             BlueButton(
-              onPressed: () {
-                // player.stop();
-                Get.to(() => const CardPaymentView());
-              },
+              onPressed: service.creditCardSelected,
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 12.0, top: 12, bottom: 12),
+                    padding: const EdgeInsets.only(right: 18.0, top: 12, bottom: 12, left: 6),
                     child: SizedBox(
-                      width: 20,
+                      width: 25,
                       child: Image.asset("assets/payment_selection/cartao.png"),
                     ),
                   ),
@@ -91,7 +90,7 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
                     "Cartão de Crédito (á vista)",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 23,
                       letterSpacing: 1,
                     ),
                   ),
@@ -100,22 +99,19 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
             ),
             const SizedBox(height: 24),
             BlueButton(
-              onPressed: () {
-                // player.stop();
-                Get.to(() => const PixPaymentView());
-              },
+              onPressed: service.pixSelected,
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 12.0, top: 12, bottom: 12),
+                    padding: const EdgeInsets.only(right: 12.0, top: 12, bottom: 12, left: 6),
                     child: SizedBox(
-                      width: 20,
+                      width: 25,
                       child: Image.asset("assets/payment_selection/pix.png"),
                     ),
                   ),
                   const Text(
                     "PIX",
-                    style: TextStyle(color: Colors.white, fontSize: 20, letterSpacing: 1),
+                    style: TextStyle(color: Colors.white, fontSize: 23, letterSpacing: 1),
                   ),
                 ],
               ),

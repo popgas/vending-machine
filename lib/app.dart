@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:vending_machine/presentation/views/screens/welcome/welcome_view.dart';
 import 'package:get/get.dart';
 
@@ -12,10 +11,7 @@ class VendingMachineApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Máquina PopGás 24h',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.interTightTextTheme(),
-        useMaterial3: true,
-      ),
+      theme: ThemeData(fontFamily: 'Geist'),
       home: const WelcomeScreen(),
     );
   }

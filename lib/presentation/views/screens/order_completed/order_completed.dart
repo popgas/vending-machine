@@ -5,6 +5,7 @@ import 'package:vending_machine/presentation/layout/conditional.dart';
 import 'package:vending_machine/presentation/layout/spaced_column.dart';
 import 'package:vending_machine/presentation/layout/spaced_row.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
+import 'package:vending_machine/presentation/views/screens/order_completed/order_completed_service.dart';
 
 class OrderCompletedView extends StatefulWidget {
   const OrderCompletedView({super.key});
@@ -15,11 +16,13 @@ class OrderCompletedView extends StatefulWidget {
 
 class _OrderCompletedViewState extends State<OrderCompletedView> {
   bool hasRated = false;
+  final service = OrderCompletedService();
   // final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
+    service.init();
     // playAudio();
   }
 
@@ -38,12 +41,12 @@ class _OrderCompletedViewState extends State<OrderCompletedView> {
             child: Center(
               child: Column(
                 children: [
-                  Image.asset("assets/order_placed/confetti.png", width: 120),
+                  Image.asset("assets/order_placed/confetti.png", width: 130),
                   const SizedBox(height: 24),
                   Text(
                     "Obrigado pela compra",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 35,
                       fontWeight: FontWeight.bold,
                       color: ColorPalette.blue3,
                     ),
@@ -68,16 +71,17 @@ class _OrderCompletedViewState extends State<OrderCompletedView> {
                 children: [
                   Text(
                     "Seu feedback foi enviado, muito obrigado!",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       color: ColorPalette.blue3,
                       fontWeight: FontWeight.bold,
-                      fontSize: 15,
+                      fontSize: 25,
                     ),
                   ),
                   Icon(
                     Icons.check_circle_outline,
                     size: 40,
-                    color: ColorPalette.blue2,
+                    color: ColorPalette.green1,
                   )
                 ],
               ),
@@ -90,7 +94,7 @@ class _OrderCompletedViewState extends State<OrderCompletedView> {
                     style: TextStyle(
                       color: ColorPalette.blue3,
                       fontWeight: FontWeight.bold,
-                      fontSize: 15,
+                      fontSize: 20,
                     ),
                   ),
                   SpacedRow(
@@ -132,8 +136,9 @@ class _OrderCompletedViewState extends State<OrderCompletedView> {
               Image.asset("assets/order_placed/$image", width: 40),
               Text(
                 text,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 12,
+                  fontSize: 15,
                 ),
               ),
             ],

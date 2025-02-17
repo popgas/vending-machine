@@ -60,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
                   child: Text(
                     "Toque para iniciar",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 25,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
                     ),

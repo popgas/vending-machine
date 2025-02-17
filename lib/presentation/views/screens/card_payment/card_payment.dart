@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
+import 'package:vending_machine/presentation/views/screens/card_payment/card_payment_service.dart';
 import 'package:vending_machine/presentation/views/screens/order_completed/order_completed.dart';
 
 class CardPaymentView extends StatefulWidget {
@@ -14,10 +15,12 @@ class CardPaymentView extends StatefulWidget {
 
 class _CardPaymentViewState extends State<CardPaymentView> {
   // final player = AudioPlayer();
+  final service = CardPaymentService();
 
   @override
   void initState() {
     super.initState();
+    service.init();
     // playAudio();
 
     Future.delayed(const Duration(seconds: 5), () {
@@ -48,13 +51,13 @@ class _CardPaymentViewState extends State<CardPaymentView> {
                 children: [
                   Text(
                     "Aguardando pagamento",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
+                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
                   ),
                   SizedBox(height: 12),
                   Text(
                     "Insira ou aproxime seu cartão na máquina",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorPalette.blue2),
+                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: ColorPalette.blue2),
                   )
                 ],
               ),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/buttons/blue_button.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
+import 'package:vending_machine/presentation/views/screens/place_container_instructions/place_container_instructions_service.dart';
 import 'package:vending_machine/presentation/views/screens/security_verification/security_verification_view.dart';
 
 class PlaceContainerInstructionsView extends StatefulWidget {
@@ -15,10 +16,12 @@ class PlaceContainerInstructionsView extends StatefulWidget {
 
 class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructionsView> {
   // final player = AudioPlayer();
+  final service = PlaceContainerInstructionsService();
 
   @override
   void initState() {
     super.initState();
+    service.init();
     // playAudio();
   }
 
@@ -33,15 +36,19 @@ class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructi
       body: Column(
         children: [
           Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Center(
+                child: Text(
                   "Insira seu botijão",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: ColorPalette.blue3,
+                  ),
                 ),
-              ],
+              ),
             ),
           ),
           Container(
@@ -58,7 +65,7 @@ class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructi
                   Text(
                     "Coloque seu botijão vazio na porta e se afaste",
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: ColorPalette.neutralPrimary),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorPalette.neutralPrimary),
                   ),
                   const SizedBox(height: 24),
                   Image.asset("assets/place_container_instructions/instrucoes_colocar_botijao.png", width: 200),
@@ -75,7 +82,7 @@ class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructi
                 Expanded(
                   child: Text(
                     "Pronto. Coloquei o botijão",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(fontSize: 23, color: Colors.white),
                   ),
                 ),
                 Icon(Icons.arrow_forward_rounded, color: Colors.white),

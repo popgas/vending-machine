@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
 import 'package:vending_machine/presentation/views/screens/payment_selection/payment_selection_view.dart';
+import 'package:vending_machine/presentation/views/screens/security_verification/security_verification_service.dart';
 
 class SecurityVerificationView extends StatefulWidget {
   const SecurityVerificationView({super.key});
@@ -15,9 +16,12 @@ class SecurityVerificationView extends StatefulWidget {
 }
 
 class _SecurityVerificationViewState extends State<SecurityVerificationView> {
+  final service = SecurityVerificationService();
+
   @override
   void initState() {
     super.initState();
+    service.init();
     // playAudio();
 
     Future.delayed(const Duration(seconds: 5), () {
@@ -49,13 +53,13 @@ class _SecurityVerificationViewState extends State<SecurityVerificationView> {
                 children: [
                   Text(
                     "Analisando seu botijão",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
+                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
                   ),
                   SizedBox(height: 12),
                   Text(
                     "Estamos verificando o estado do seu botijão. Por favor, aguarde.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorPalette.blue2),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: ColorPalette.blue2),
                   )
                 ],
               ),

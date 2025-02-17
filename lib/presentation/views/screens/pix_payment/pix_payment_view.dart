@@ -7,6 +7,7 @@ import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/utils/timer.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:vending_machine/presentation/views/screens/pix_payment/pix_payment_service.dart';
 
 class PixPaymentView extends StatefulWidget {
   const PixPaymentView({super.key});
@@ -17,11 +18,13 @@ class PixPaymentView extends StatefulWidget {
 
 class _PixPaymentViewState extends State<PixPaymentView> {
   int timeRemaining = 600;
+  final service = PixPaymentService();
   // final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
+    service.init();
     // playAudio();
 
     Timer.periodic(const Duration(seconds: 1), (t) {

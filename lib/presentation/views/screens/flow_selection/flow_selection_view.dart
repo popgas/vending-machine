@@ -5,6 +5,7 @@ import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/buttons/blue_button.dart';
 import 'package:vending_machine/presentation/views/components/buttons/white_button.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
+import 'package:vending_machine/presentation/views/screens/flow_selection/flow_selection_service.dart';
 import 'package:vending_machine/presentation/views/screens/product_selection/product_selection_view.dart';
 
 class FlowSelectionView extends StatefulWidget {
@@ -16,10 +17,12 @@ class FlowSelectionView extends StatefulWidget {
 
 class _FlowSelectionViewState extends State<FlowSelectionView> {
   // final player = AudioPlayer();
+  final service = FlowSelectionService();
 
   @override
   void initState() {
     super.initState();
+    service.init();
     // playAudio();
   }
 
@@ -34,13 +37,17 @@ class _FlowSelectionViewState extends State<FlowSelectionView> {
       body: Column(
         children: [
           Expanded(
-            child: Center(
-              child: Text(
-                "Escolher como deseja continuar",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: ColorPalette.blue3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Center(
+                child: Text(
+                  "Escolher como deseja continuar",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: ColorPalette.blue3,
+                  ),
                 ),
               ),
             ),
@@ -52,7 +59,7 @@ class _FlowSelectionViewState extends State<FlowSelectionView> {
             },
             child: const Text(
               "Novo Pedido",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.white, fontSize: 30),
             ),
           ),
           const SizedBox(height: 24),
@@ -64,11 +71,11 @@ class _FlowSelectionViewState extends State<FlowSelectionView> {
               children: [
                 Text(
                   "Retirar com código",
-                  style: TextStyle(color: ColorPalette.blue3, fontSize: 20),
+                  style: TextStyle(color: ColorPalette.blue3, fontSize: 30),
                 ),
                 Text(
                   "Já fiz meu pedido no aplicativo",
-                  style: TextStyle(color: ColorPalette.neutralPrimary, fontSize: 13),
+                  style: TextStyle(color: ColorPalette.neutralPrimary, fontSize: 18),
                 ),
               ],
             ),
