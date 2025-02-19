@@ -8,19 +8,21 @@ on:
 jobs:
   build:
     name: Build & Release
-    runs-on: ubuntu-22.04  # Updated to a stable runner for setup-qemu support
+    runs-on: ubuntu-24.04
 
     steps:
-      - name: Set up QEMU
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Set Up Java
         uses: actions/setup-java@v3.12.0
@@ -50,8 +52,8 @@ jobs:
               libgtk-3-dev \
               liblzma-dev \
               libstdc++-12-dev \
-          && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.27.1-stable.tar.xz
-          && tar -xf ./flutter_linux_3.27.1-stable.tar.xz -C ~/development/
+          && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.29.0-stable.tar.xz
+          && tar -xf ./flutter_linux_3.29.0-stable.tar.xz -C ~/development/
           && export PATH="~/development/flutter/bin:$PATH"
           && flutter pub get
           && flutter build linux --release --target-platform=linux-arm64

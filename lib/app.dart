@@ -12,7 +12,7 @@ class VendingMachineApp extends StatelessWidget {
       title: 'Máquina PopGás 24h',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Geist'),
-      home: const WelcomeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
