@@ -1,8 +1,9 @@
 import 'dart:async';
 
-// import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/utils/timer.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
@@ -10,7 +11,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:vending_machine/presentation/views/screens/pix_payment/pix_payment_service.dart';
 
 class PixPaymentView extends StatefulWidget {
-  const PixPaymentView({super.key});
+  final NewOrderIntent orderIntent;
+
+  const PixPaymentView({super.key, required this.orderIntent});
 
   @override
   State<PixPaymentView> createState() => _PixPaymentViewState();
@@ -19,13 +22,13 @@ class PixPaymentView extends StatefulWidget {
 class _PixPaymentViewState extends State<PixPaymentView> {
   int timeRemaining = 600;
   final service = PixPaymentService();
-  // final player = AudioPlayer();
+  final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
     service.init();
-    // playAudio();
+    playAudio();
 
     Timer.periodic(const Duration(seconds: 1), (t) {
       setState(() {
@@ -35,7 +38,7 @@ class _PixPaymentViewState extends State<PixPaymentView> {
   }
 
   void playAudio() async {
-    // await player.play(AssetSource('pix_payment/audio.mp3'));
+    await player.play(AssetSource('pix_payment/audio.mp3'));
   }
 
   @override

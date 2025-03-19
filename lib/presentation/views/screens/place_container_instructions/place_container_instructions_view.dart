@@ -1,6 +1,7 @@
-// import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/buttons/blue_button.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
@@ -8,25 +9,30 @@ import 'package:vending_machine/presentation/views/screens/place_container_instr
 import 'package:vending_machine/presentation/views/screens/security_verification/security_verification_view.dart';
 
 class PlaceContainerInstructionsView extends StatefulWidget {
-  const PlaceContainerInstructionsView({super.key});
+  final NewOrderIntent orderIntent;
+
+  const PlaceContainerInstructionsView({
+    super.key,
+    required this.orderIntent,
+  });
 
   @override
   State<PlaceContainerInstructionsView> createState() => _PlaceContainerInstructionsViewState();
 }
 
 class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructionsView> {
-  // final player = AudioPlayer();
+  final player = AudioPlayer();
   final service = PlaceContainerInstructionsService();
 
   @override
   void initState() {
     super.initState();
     service.init();
-    // playAudio();
+    playAudio();
   }
 
   void playAudio() async {
-    // await player.play(AssetSource('place_container_instructions/audio.mp3'));
+    await player.play(AssetSource('place_container_instructions/audio.mp3'));
   }
 
   @override
@@ -74,8 +80,8 @@ class _PlaceContainerInstructionsViewState extends State<PlaceContainerInstructi
           const SizedBox(height: 24),
           BlueButton(
             onPressed: () {
-              // player.stop();
-              Get.to(() => const SecurityVerificationView());
+              player.stop();
+              Get.to(() => SecurityVerificationView(orderIntent: widget.orderIntent));
             },
             child: const Row(
               children: [

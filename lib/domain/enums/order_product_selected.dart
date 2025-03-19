@@ -1,0 +1,4 @@
+enum OrderProductSelected {
+  onlyGasRefill,
+  gasWithContainer,
+}

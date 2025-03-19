@@ -1,44 +1,43 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/bootstrap.dart';
-import 'package:vending_machine/presentation/services/session_service.dart';
+import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
 import 'package:vending_machine/presentation/views/screens/card_payment/card_payment.dart';
 import 'package:vending_machine/presentation/views/screens/pix_payment/pix_payment_view.dart';
 
 class PaymentSelectionService {
   final dio = getIt<Dio>();
-  final sessionService = getIt<SessionService>();
+  final NewOrderIntent orderIntent;
+  final player = AudioPlayer();
+
+  PaymentSelectionService(this.orderIntent);
 
   Future<void> init() async {
-    sessionService.update(properties: {
-      'latest_screen': 'Escolha da Forma de Pagamento',
-    });
+    await player.play(AssetSource('payment_selection/audio.mp3'));
   }
 
   Future<void> debitCardSelected() async {
-    sessionService.update(properties: {
-      'latest_screen': 'Escolha da Forma de Pagamento',
-      'payment_method_id': 2,
-    });
-
-    Get.to(() => const CardPaymentView());
+    Get.to(() => CardPaymentView(
+      orderIntent: orderIntent.copyWith(
+        paymentMethodId: 2,
+      ),
+    ));
   }
 
   Future<void> creditCardSelected() async {
-    sessionService.update(properties: {
-      'latest_screen': 'Escolha da Forma de Pagamento',
-      'payment_method_id': 3,
-    });
-
-    Get.to(() => const CardPaymentView());
+    Get.to(() => CardPaymentView(
+      orderIntent: orderIntent.copyWith(
+        paymentMethodId: 3,
+      ),
+    ));
   }
 
   Future<void> pixSelected() async {
-    sessionService.update(properties: {
-      'latest_screen': 'Escolha da Forma de Pagamento',
-      'payment_method_id': 9,
-    });
-
-    Get.to(() => const PixPaymentView());
+    Get.to(() => PixPaymentView(
+      orderIntent: orderIntent.copyWith(
+        paymentMethodId: 9,
+      ),
+    ));
   }
 }

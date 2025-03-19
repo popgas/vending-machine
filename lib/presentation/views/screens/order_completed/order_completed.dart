@@ -1,5 +1,6 @@
-// import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/layout/conditional.dart';
 import 'package:vending_machine/presentation/layout/spaced_column.dart';
@@ -8,7 +9,9 @@ import 'package:vending_machine/presentation/views/components/vending_machine_sc
 import 'package:vending_machine/presentation/views/screens/order_completed/order_completed_service.dart';
 
 class OrderCompletedView extends StatefulWidget {
-  const OrderCompletedView({super.key});
+  final NewOrderIntent orderIntent;
+
+  const OrderCompletedView({super.key, required this.orderIntent});
 
   @override
   State<OrderCompletedView> createState() => _OrderCompletedViewState();
@@ -17,23 +20,23 @@ class OrderCompletedView extends StatefulWidget {
 class _OrderCompletedViewState extends State<OrderCompletedView> {
   bool hasRated = false;
   final service = OrderCompletedService();
-  // final player = AudioPlayer();
+  final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
     service.init();
-    // playAudio();
+    playAudio();
   }
 
   void playAudio() async {
-    // await player.play(AssetSource('order_placed/audio.mp3'));
+    await player.play(AssetSource('order_placed/audio.mp3'));
   }
 
   @override
   Widget build(BuildContext context) {
     return VendingMachineScaffold(
-      canGoBack: true,
+      canGoBack: false,
       body: Column(
         children: [
           const SizedBox(height: 100),

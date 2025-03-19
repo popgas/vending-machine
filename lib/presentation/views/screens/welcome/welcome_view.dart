@@ -1,4 +1,3 @@
-import 'package:dart_periphery/dart_periphery.dart';
 import 'package:flutter/material.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/buttons/blue_button.dart';
@@ -19,39 +18,6 @@ class WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-
-    try {
-      List<String> lines = [];
-      var config = GPIOconfig.defaultValues();
-      lines.add('Native c-periphery Version :  ${getCperipheryVersion()}');
-      lines.add('GPIO test');
-
-      var gpio = GPIO(18, GPIOdirection.gpioDirOut);
-      var gpio2 = GPIO(16, GPIOdirection.gpioDirOut);
-      var gpio3 = GPIO.advanced(5, config);
-
-      lines.add('GPIO info: ' + gpio.getGPIOinfo());
-
-      lines.add('GPIO native file handle: ${gpio.getGPIOfd()}');
-      lines.add('GPIO chip name: ${gpio.getGPIOchipName()}');
-      lines.add('GPIO chip label: ${gpio.getGPIOchipLabel()}');
-      lines.add('GPIO chip name: ${gpio.getGPIOchipName()}');
-      lines.add('CPIO chip label: ${gpio.getGPIOchipLabel()}');
-
-      gpio.dispose();
-      gpio2.dispose();
-      gpio3.dispose();
-
-      setState(() {
-        this.lines = lines;
-      });
-    } catch (e) {
-      setState(() {
-        this.lines = [
-          e.toString(),
-        ];
-      });
-    }
   }
 
   @override

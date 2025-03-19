@@ -24,6 +24,6 @@ export AWS_DEFAULT_PROFILE=popgas
 
 aws s3 cp --profile popgas ./build/web/ s3://${bucket_name}/ --recursive
 
-aws cloudfront --profile popgas create-invalidation --distribution-id E1PS0WRJLNFBP5 --paths "/*"
+aws cloudfront --profile popgas create-invalidation --distribution-id E2BNTKV792L07 --paths "/*"
 
 printf "${GREEN}Deploy finalizado!\n"

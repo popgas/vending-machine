@@ -1,15 +1,18 @@
 import 'dart:async';
 
-// import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
 import 'package:vending_machine/presentation/views/screens/payment_selection/payment_selection_view.dart';
 import 'package:vending_machine/presentation/views/screens/security_verification/security_verification_service.dart';
 
 class SecurityVerificationView extends StatefulWidget {
-  const SecurityVerificationView({super.key});
+  final NewOrderIntent orderIntent;
+
+  const SecurityVerificationView({super.key, required this.orderIntent});
 
   @override
   State<SecurityVerificationView> createState() => _SecurityVerificationViewState();
@@ -17,21 +20,22 @@ class SecurityVerificationView extends StatefulWidget {
 
 class _SecurityVerificationViewState extends State<SecurityVerificationView> {
   final service = SecurityVerificationService();
+  final player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
     service.init();
-    // playAudio();
+    playAudio();
 
     Future.delayed(const Duration(seconds: 5), () {
-      Get.to(() => const PaymentSelectionView());
+      player.stop();
+      Get.to(() => PaymentSelectionView(orderIntent: widget.orderIntent));
     });
   }
 
   void playAudio() async {
-    // final player = AudioPlayer();
-    // await player.play(AssetSource('security_verification/audio.mp3'));
+    await player.play(AssetSource('security_verification/audio.mp3'));
   }
 
   @override

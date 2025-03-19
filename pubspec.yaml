@@ -27,7 +27,10 @@ dependencies:
   flutter_native_splash: ^2.4.5
   android_id: ^0.4.0
   device_info_plus: ^11.1.0
-  dart_periphery: ^0.9.15
+  shared_preferences: ^2.3.2
+  audioplayers: ^6.4.0
+  provider: ^6.0.1
+  after_layout: ^1.1.0
 
 dev_dependencies:
   flutter_test:
