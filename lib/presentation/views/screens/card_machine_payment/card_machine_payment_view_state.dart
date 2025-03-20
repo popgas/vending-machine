@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CardPaymentViewState extends ChangeNotifier {
+class CardMachinePaymentViewState extends ChangeNotifier {
   bool awaitingPaymentApproval = true;
   bool? rejected;
 

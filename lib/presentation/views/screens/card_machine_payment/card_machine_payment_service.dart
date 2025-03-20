@@ -7,18 +7,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vending_machine/bootstrap.dart';
 import 'package:vending_machine/domain/enums/order_product_selected.dart';
 import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
-import 'package:vending_machine/presentation/views/screens/card_payment/card_payment_view_state.dart';
+import 'package:vending_machine/presentation/views/screens/card_machine_payment/card_machine_payment_view_state.dart';
 import 'package:vending_machine/presentation/views/screens/order_completed/order_completed.dart';
 
-class CardPaymentService {
+class CardMachinePaymentService {
   final dio = getIt<Dio>();
-  final state = CardPaymentViewState();
+  final state = CardMachinePaymentViewState();
   final NewOrderIntent orderIntent;
   final player = AudioPlayer();
   String? correlationId;
   Timer? paymentCheckerTimer;
 
-  CardPaymentService(this.orderIntent);
+  CardMachinePaymentService(this.orderIntent);
 
   Future<void> initiatePayment() async {
     player.play(AssetSource('card_payment/audio.mp3'));
@@ -46,7 +46,7 @@ class CardPaymentService {
 
   Future<void> checkPaymentStatus() async {
     var response = await dio.get('/vending-machine-orders/$correlationId');
-    var status = response.data['status'];
+    var status = response.data['payment_status'];
 
     switch (status) {
       case 'APPROVED':
@@ -71,5 +71,9 @@ class CardPaymentService {
       default:
         return;
     }
+  }
+
+  void dispose() {
+    paymentCheckerTimer?.cancel();
   }
 }

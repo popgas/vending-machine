@@ -5,6 +5,8 @@ import 'package:vending_machine/presentation/views/components/vending_machine_sc
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/views/screens/flow_selection/flow_selection_view.dart';
 
+import '../product_selection/product_selection_view.dart';
+
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
 
@@ -74,7 +76,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               ),
               BlueButton(
                 onPressed: () {
-                  Get.to(() => const FlowSelectionView());
+                  Get.to(() => const ProductSelectionView());
                 },
                 child: const Center(
                   child: Text(

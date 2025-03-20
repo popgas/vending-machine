@@ -3,8 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/bootstrap.dart';
 import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
-import 'package:vending_machine/presentation/views/screens/card_payment/card_payment.dart';
-import 'package:vending_machine/presentation/views/screens/pix_payment/pix_payment_view.dart';
+import 'package:vending_machine/presentation/views/screens/card_machine_payment/card_machine_payment_view.dart';
 
 class PaymentSelectionService {
   final dio = getIt<Dio>();
@@ -18,7 +17,7 @@ class PaymentSelectionService {
   }
 
   Future<void> debitCardSelected() async {
-    Get.to(() => CardPaymentView(
+    Get.to(() => CardMachinePaymentView(
       orderIntent: orderIntent.copyWith(
         paymentMethodId: 2,
       ),
@@ -26,7 +25,7 @@ class PaymentSelectionService {
   }
 
   Future<void> creditCardSelected() async {
-    Get.to(() => CardPaymentView(
+    Get.to(() => CardMachinePaymentView(
       orderIntent: orderIntent.copyWith(
         paymentMethodId: 3,
       ),
@@ -34,9 +33,9 @@ class PaymentSelectionService {
   }
 
   Future<void> pixSelected() async {
-    Get.to(() => PixPaymentView(
+    Get.to(() => CardMachinePaymentView(
       orderIntent: orderIntent.copyWith(
-        paymentMethodId: 9,
+        paymentMethodId: 5,
       ),
     ));
   }

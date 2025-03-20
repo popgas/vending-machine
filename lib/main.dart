@@ -21,13 +21,11 @@ void main() async {
 Future<void> parseVendingMachineId() async {
   var parsed = Uri.parse(window.location.href);
 
-  if (parsed.pathSegments.length >= 2) {
-    if (parsed.pathSegments[0] == "vm") {
-      var uid = parsed.pathSegments[1];
+  if (parsed.queryParameters.containsKey("vm")) {
+      var uid = parsed.queryParameters["vm"] as String;
 
       var storage = await SharedPreferences.getInstance();
       storage.setString("vending_machine_id", uid);
-    }
   } else {
     throw Exception("Invalid vending machine id");
   }

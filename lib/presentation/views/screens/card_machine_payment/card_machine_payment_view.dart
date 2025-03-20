@@ -3,34 +3,39 @@ import 'package:provider/provider.dart';
 import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
-import 'package:vending_machine/presentation/views/screens/card_payment/card_payment_service.dart';
+import 'package:vending_machine/presentation/views/screens/card_machine_payment/card_machine_payment_service.dart';
+import 'package:vending_machine/presentation/views/screens/card_machine_payment/card_machine_payment_view_state.dart';
 
-import 'card_payment_view_state.dart';
-
-class CardPaymentView extends StatefulWidget {
+class CardMachinePaymentView extends StatefulWidget {
   final NewOrderIntent orderIntent;
 
-  const CardPaymentView({super.key, required this.orderIntent});
+  const CardMachinePaymentView({super.key, required this.orderIntent});
 
   @override
-  State<CardPaymentView> createState() => _CardPaymentViewState();
+  State<CardMachinePaymentView> createState() => _CardMachinePaymentViewState();
 }
 
-class _CardPaymentViewState extends State<CardPaymentView> {
-  late CardPaymentService service;
+class _CardMachinePaymentViewState extends State<CardMachinePaymentView> {
+  late CardMachinePaymentService service;
 
   @override
   void initState() {
     super.initState();
-    service = CardPaymentService(widget.orderIntent);
+    service = CardMachinePaymentService(widget.orderIntent);
     service.initiatePayment();
+  }
+
+  @override
+  void dispose() {
+    service.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: service.state,
-      child: Consumer<CardPaymentViewState>(
+      child: Consumer<CardMachinePaymentViewState>(
         builder:
             (context, state, _) => VendingMachineScaffold(
               bgOpacity: 0,
@@ -47,7 +52,9 @@ class _CardPaymentViewState extends State<CardPaymentView> {
                           Text("Aguardando pagamento", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: ColorPalette.blue3)),
                           SizedBox(height: 12),
                           Text(
-                            "Insira ou aproxime seu cartão na máquina",
+                            widget.orderIntent.paymentMethodId == 5
+                              ? "Escaneie o QR code na tela da maquininha de cartão para efetuar o pagamento"
+                              : "Insira ou aproxime seu cartão na maquininha",
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: ColorPalette.blue2),
                           ),
