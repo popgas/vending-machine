@@ -39,7 +39,7 @@ class _CardMachinePaymentViewState extends State<CardMachinePaymentView> {
         builder:
             (context, state, _) => VendingMachineScaffold(
               bgOpacity: 0,
-              canGoBack: true,
+              canGoBack: false,
               body: Column(
                 children: [
                   Expanded(
@@ -49,14 +49,14 @@ class _CardMachinePaymentViewState extends State<CardMachinePaymentView> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Aguardando pagamento", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: ColorPalette.blue3)),
+                          Text("Aguardando pagamento", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: ColorPalette.blue3)),
                           SizedBox(height: 12),
                           Text(
                             widget.orderIntent.paymentMethodId == 5
                               ? "Escaneie o QR code na tela da maquininha de cartão para efetuar o pagamento"
                               : "Insira ou aproxime seu cartão na maquininha",
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: ColorPalette.blue2),
+                            style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold, color: ColorPalette.blue2),
                           ),
                         ],
                       ),

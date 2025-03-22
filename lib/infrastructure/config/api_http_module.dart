@@ -5,7 +5,7 @@ import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 @module
-abstract class HttpModule {
+abstract class ApiHttpModule {
   final Map<String, dynamic> defaultHeaders = {
     "Accept": "application/json",
     "X-Origin": "customer-app",

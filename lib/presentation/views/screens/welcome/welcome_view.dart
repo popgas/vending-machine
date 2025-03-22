@@ -4,6 +4,8 @@ import 'package:vending_machine/presentation/views/components/buttons/blue_butto
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
 import 'package:get/get.dart';
 import 'package:vending_machine/presentation/views/screens/flow_selection/flow_selection_view.dart';
+import 'package:vending_machine/presentation/views/screens/gpio_test/gpio_test_view.dart';
+import 'package:vending_machine/presentation/views/screens/welcome/welcome_view_service.dart';
 
 import '../product_selection/product_selection_view.dart';
 
@@ -16,6 +18,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class WelcomeScreenState extends State<WelcomeScreen> {
   List<String> lines = [];
+  final service = WelcomeViewService();
 
   @override
   void initState() {
@@ -41,7 +44,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     Text(
                       "Bem-vindo",
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 35,
                         fontWeight: FontWeight.bold,
                         color: ColorPalette.blue3,
                       ),
@@ -49,7 +52,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     Text(
                       lines.join("\n"),
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 35,
                         fontWeight: FontWeight.bold,
                         color: ColorPalette.blue3,
                       ),
@@ -57,7 +60,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     Text(
                       "Máquina de Auto Atendimento",
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: ColorPalette.blue3,
                       ),
@@ -74,15 +77,30 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   ],
                 ),
               ),
+              // BlueButton(
+              //   onPressed: () {
+              //     Get.to(() => GpioTestView());
+              //   },
+              //   child: const Center(
+              //     child: Text(
+              //       "Teste de Pinos",
+              //       style: TextStyle(
+              //         fontSize: 25,
+              //         fontWeight: FontWeight.normal,
+              //         color: Colors.white,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 20),
               BlueButton(
-                onPressed: () {
-                  Get.to(() => const ProductSelectionView());
-                },
+                onPressed: service.goToProductSelection,
+                height: 120,
                 child: const Center(
                   child: Text(
-                    "Toque para iniciar",
+                    "Toque para continuar",
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 35,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
                     ),

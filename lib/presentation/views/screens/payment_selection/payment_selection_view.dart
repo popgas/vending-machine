@@ -29,7 +29,7 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
     return VendingMachineScaffold(
       canGoBack: true,
       body: SizedBox(
-        width: 500,
+        width: MediaQuery.of(context).size.width / 100 * 80,
         child: Column(
           children: [
             Expanded(
@@ -39,7 +39,7 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
                   child: Text(
                     "Selecione a forma de pagamento",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
                   ),
                 ),
               ),
@@ -50,9 +50,9 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 18.0, top: 12, bottom: 12, left: 6),
-                    child: SizedBox(width: 25, child: Image.asset("assets/payment_selection/cartao.png")),
+                    child: SizedBox(width: 30, child: Image.asset("assets/payment_selection/cartao.png")),
                   ),
-                  const Text("Cartão de Débito", style: TextStyle(color: Colors.white, fontSize: 23, letterSpacing: 1)),
+                  const Text("Cartão de Débito", style: TextStyle(color: Colors.white, fontSize: 30, letterSpacing: 1)),
                 ],
               ),
             ),
@@ -63,9 +63,9 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 18.0, top: 12, bottom: 12, left: 6),
-                    child: SizedBox(width: 25, child: Image.asset("assets/payment_selection/cartao.png")),
+                    child: SizedBox(width: 30, child: Image.asset("assets/payment_selection/cartao.png")),
                   ),
-                  const Text("Cartão de Crédito (á vista)", style: TextStyle(color: Colors.white, fontSize: 23, letterSpacing: 1)),
+                  const Text("Cartão de Crédito (á vista)", style: TextStyle(color: Colors.white, fontSize: 30, letterSpacing: 1)),
                 ],
               ),
             ),
@@ -76,9 +76,9 @@ class _PaymentSelectionViewState extends State<PaymentSelectionView> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 12.0, top: 12, bottom: 12, left: 6),
-                    child: SizedBox(width: 25, child: Image.asset("assets/payment_selection/pix.png")),
+                    child: SizedBox(width: 30, child: Image.asset("assets/payment_selection/pix.png")),
                   ),
-                  const Text("PIX", style: TextStyle(color: Colors.white, fontSize: 23, letterSpacing: 1)),
+                  const Text("PIX", style: TextStyle(color: Colors.white, fontSize: 30, letterSpacing: 1)),
                 ],
               ),
             ),

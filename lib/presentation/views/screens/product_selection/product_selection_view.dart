@@ -33,54 +33,63 @@ class _ProductSelectionViewState extends State<ProductSelectionView> with AfterL
               body: Conditional(
                 condition: state.fetchingPrices,
                 ifTrue: () => const Center(child: CircularProgressIndicator()),
-                ifFalse: () => Column(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Center(
-                          child: Text("Selecione o produto", textAlign: TextAlign.center, style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: ColorPalette.blue3)),
+                ifFalse:
+                    () => Column(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Center(
+                              child: Text(
+                                "Selecione o produto",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: ColorPalette.blue3),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    WhiteButton(
-                      onPressed: service.refillSelected,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Recarga 13kg", style: TextStyle(color: ColorPalette.blue3, fontSize: 30)),
-                                Text("eu trouxe o vasilhame vazio para troca", style: TextStyle(color: ColorPalette.neutralPrimary, fontSize: 18)),
-                              ],
-                            ),
+                        WhiteButton(
+                          onPressed: service.refillSelected,
+                          height: 150,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Recarga 13kg", style: TextStyle(color: ColorPalette.blue3, fontSize: 35)),
+                                    Text("eu trouxe o vasilhame vazio para troca", style: TextStyle(color: ColorPalette.neutralPrimary, fontSize: 22)),
+                                  ],
+                                ),
+                              ),
+                              Text(Formatters.formatCurrency(state.gasRefillPrice), style: TextStyle(color: ColorPalette.blue3, fontSize: 40)),
+                            ],
                           ),
-                          Text(Formatters.formatCurrency(state.gasRefillPrice), style: TextStyle(color: ColorPalette.blue3, fontSize: 30)),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    WhiteButton(
-                      onPressed: service.gasWithContainerSelected,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Comprar Botijão + Vasilhame 13kg", style: TextStyle(color: ColorPalette.blue3, fontSize: 30)),
-                                Text("não tenho vasilhame e quero comprar", style: TextStyle(color: ColorPalette.neutralPrimary, fontSize: 18)),
-                              ],
-                            ),
+                        ),
+                        const SizedBox(height: 24),
+                        WhiteButton(
+                          height: 150,
+                          onPressed: service.gasWithContainerSelected,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Gás 13kg + Vasilhame 13kg", style: TextStyle(color: ColorPalette.blue3, fontSize: 35, letterSpacing: -1)),
+                                    Text("não tenho vasilhame e quero comprar", style: TextStyle(color: ColorPalette.neutralPrimary, fontSize: 22)),
+                                  ],
+                                ),
+                              ),
+                              Text(Formatters.formatCurrency(state.gasWithContainerPrice), style: TextStyle(color: ColorPalette.blue3, fontSize: 40)),
+                            ],
                           ),
-                          Text(Formatters.formatCurrency(state.gasWithContainerPrice), style: TextStyle(color: ColorPalette.blue3, fontSize: 30)),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 24),
+                      ],
                     ),
-                    const SizedBox(height: 24),
-                  ],
-                ),
               ),
             ),
       ),

@@ -1,12 +1,7 @@
-import 'dart:async';
-
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:vending_machine/presentation/abstractions/new_order_intent.dart';
 import 'package:vending_machine/presentation/config/color_palette.dart';
 import 'package:vending_machine/presentation/views/components/vending_machine_scaffold.dart';
-import 'package:vending_machine/presentation/views/screens/payment_selection/payment_selection_view.dart';
 import 'package:vending_machine/presentation/views/screens/security_verification/security_verification_service.dart';
 
 class SecurityVerificationView extends StatefulWidget {
@@ -19,30 +14,20 @@ class SecurityVerificationView extends StatefulWidget {
 }
 
 class _SecurityVerificationViewState extends State<SecurityVerificationView> {
-  final service = SecurityVerificationService();
-  final player = AudioPlayer();
+  late SecurityVerificationService service;
 
   @override
   void initState() {
     super.initState();
+    service = SecurityVerificationService(widget.orderIntent);
     service.init();
-    playAudio();
-
-    Future.delayed(const Duration(seconds: 5), () {
-      player.stop();
-      Get.to(() => PaymentSelectionView(orderIntent: widget.orderIntent));
-    });
-  }
-
-  void playAudio() async {
-    await player.play(AssetSource('security_verification/audio.mp3'));
   }
 
   @override
   Widget build(BuildContext context) {
     return VendingMachineScaffold(
       bgOpacity: 0,
-      canGoBack: true,
+      canGoBack: false,
       body: Column(
         children: [
           Expanded(

@@ -21,7 +21,7 @@ class CardMachinePaymentService {
   CardMachinePaymentService(this.orderIntent);
 
   Future<void> initiatePayment() async {
-    player.play(AssetSource('card_payment/audio.mp3'));
+    playAudio();
 
     await Future.delayed(const Duration(seconds: 1));
 
@@ -75,5 +75,13 @@ class CardMachinePaymentService {
 
   void dispose() {
     paymentCheckerTimer?.cancel();
+  }
+
+  void playAudio() {
+    if (orderIntent.paymentMethodId == 5 || orderIntent.paymentMethodId == 9) {
+      player.play(AssetSource('card_payment/pay_with_qr_code.mp3'));
+    } else  {
+      player.play(AssetSource('card_payment/audio.mp3'));
+    }
   }
 }

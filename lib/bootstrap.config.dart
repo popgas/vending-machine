@@ -16,8 +16,8 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
 import 'package:package_info_plus/package_info_plus.dart' as _i655;
 
+import 'infrastructure/config/api_http_module.dart' as _i36;
 import 'infrastructure/config/configuration_module.dart' as _i550;
-import 'infrastructure/config/http_module.dart' as _i603;
 import 'infrastructure/config/third_party_services_module.dart' as _i516;
 import 'presentation/services/session_service.dart' as _i433;
 
@@ -28,25 +28,29 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    final httpModule = _$HttpModule();
     final thirdPartyServicesModule = _$ThirdPartyServicesModule();
+    final apiHttpModule = _$ApiHttpModule();
     final configurationModule = _$ConfigurationModule();
-    gh.factory<Map<String, dynamic>>(() => httpModule.defaultHeaders);
     await gh.factoryAsync<_i655.PackageInfo>(
       () => thirdPartyServicesModule.packageInfo,
       preResolve: true,
     );
+    gh.factory<Map<String, dynamic>>(() => apiHttpModule.defaultHeaders);
     gh.singleton<_i833.DeviceInfoPlugin>(
       () => thirdPartyServicesModule.deviceInfoPlugin,
     );
     gh.singleton<_i974.Logger>(() => thirdPartyServicesModule.logger);
     gh.lazySingleton<_i433.SessionService>(() => _i433.SessionService());
     gh.factory<String>(
+      () => configurationModule.machineUrl(),
+      instanceName: 'machineUrl',
+    );
+    gh.factory<String>(
       () => configurationModule.baseUrl(),
       instanceName: 'baseUrl',
     );
     gh.lazySingleton<_i361.Dio>(
-      () => httpModule.dio(
+      () => apiHttpModule.dio(
         gh<String>(instanceName: 'baseUrl'),
         gh<_i974.Logger>(),
         gh<_i655.PackageInfo>(),
@@ -56,11 +60,11 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$HttpModule extends _i603.HttpModule {}
-
 class _$ThirdPartyServicesModule extends _i516.ThirdPartyServicesModule {
   @override
   _i833.DeviceInfoPlugin get deviceInfoPlugin => _i833.DeviceInfoPlugin();
 }
+
+class _$ApiHttpModule extends _i36.ApiHttpModule {}
 
 class _$ConfigurationModule extends _i550.ConfigurationModule {}

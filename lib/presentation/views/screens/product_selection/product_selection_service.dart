@@ -26,11 +26,13 @@ class ProductSelectionService {
 
     var gasRefillPrice = (result.data['gas_refill_price'] as num).toDouble();
     var containerPrice = (result.data['container_price'] as num).toDouble();
+    var containerFullStockCount = (result.data['container_full_stock_count'] as num).toInt();
 
     state.update(
         fetchingPrices: false,
         gasRefillPrice: gasRefillPrice,
-        gasWithContainerPrice: gasRefillPrice + containerPrice
+        gasWithContainerPrice: gasRefillPrice + containerPrice,
+        stockCount: containerFullStockCount,
     );
 
     await player.play(AssetSource('product_selection/audio.mp3'));
@@ -43,6 +45,7 @@ class ProductSelectionService {
       orderIntent: NewOrderIntent(
         productSelected: OrderProductSelected.onlyGasRefill,
         productPrice: state.gasRefillPrice,
+        stockCount: state.stockCount,
       ),
     ));
   }
@@ -53,6 +56,7 @@ class ProductSelectionService {
     Get.to(() => PaymentSelectionView(orderIntent: NewOrderIntent(
       productSelected: OrderProductSelected.gasWithContainer,
       productPrice: state.gasWithContainerPrice,
+      stockCount: state.stockCount,
     )));
   }
 }
